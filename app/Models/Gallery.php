@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasUniqueSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Gallery extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUniqueSlug;
 
     protected $fillable = [
         'title',
@@ -23,16 +23,6 @@ class Gallery extends Model
     protected $casts = [
         'event_date' => 'date',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (empty($model->slug)) {
-                $model->slug = Str::slug($model->title);
-            }
-        });
-    }
 
     // Relationships
     public function images()
@@ -56,7 +46,7 @@ class Gallery extends Model
         if ($firstImage) {
             return asset('storage/' . $firstImage->image);
         }
-        return asset('images/gallery-default.jpg');
+        return asset('images/gallery-default.svg');
     }
 
     public function getImagesCountAttribute(): int

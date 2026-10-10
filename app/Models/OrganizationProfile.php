@@ -53,7 +53,7 @@ class OrganizationProfile extends Model
     // Accessors
     public function getLogoUrlAttribute(): string
     {
-        return $this->logo ? asset('storage/' . $this->logo) : asset('images/logo-nu.png');
+        return $this->logo ? asset('storage/' . $this->logo) : asset('images/logo-nu.svg');
     }
 
     public function getQrisImageUrlAttribute(): ?string

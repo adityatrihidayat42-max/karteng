@@ -64,9 +64,9 @@ Route::get('/donasi/{transaction_code}', [PublicDonationController::class, 'show
 Route::post('/donasi/{transaction_code}/upload-bukti', [PublicDonationController::class, 'uploadProof'])->name('donasi.upload-bukti');
 
 // =========================================================================
-// ADMIN ROUTES (Protected by auth)
+// ADMIN ROUTES (Protected by auth + admin role)
 // =========================================================================
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('dashboard');
 
@@ -74,6 +74,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('members', Admin\MemberController::class);
     Route::post('members/{member}/approve', [Admin\MemberController::class, 'approve'])->name('members.approve');
     Route::post('members/{member}/reject', [Admin\MemberController::class, 'reject'])->name('members.reject');
+    Route::post('members/{member}/toggle-public', [Admin\MemberController::class, 'togglePublic'])->name('members.toggle-public');
     Route::get('members/{member}/kta', [Admin\KtaController::class, 'show'])->name('members.kta');
     Route::get('members/{member}/kta/download', [Admin\KtaController::class, 'download'])->name('members.kta.download');
 

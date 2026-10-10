@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="space-y-5">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
             <h2 class="text-xl font-bold text-gray-800">Album & Dokumentasi Foto</h2>
             <p class="text-xs text-gray-500">Kelola album kegiatan dan kumpulan foto dokumentasi.</p>

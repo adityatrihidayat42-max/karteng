@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto space-y-6">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between gap-3">
         <a href="{{ route('admin.donations.index') }}" class="text-xs font-semibold text-gray-500 hover:text-emerald-700">
             &larr; Kembali ke Daftar Donasi
         </a>
@@ -23,38 +23,38 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-gray-700">
             <div class="space-y-3">
-                <div class="flex justify-between py-1 border-b border-gray-50">
+                <div class="flex justify-between gap-4 py-1 border-b border-gray-50">
                     <span class="text-gray-400">Nama Donatur:</span>
                     <span class="font-bold text-gray-900">{{ $donation->donor_name }}</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-gray-50">
+                <div class="flex justify-between gap-4 py-1 border-b border-gray-50">
                     <span class="text-gray-400">WhatsApp / HP:</span>
                     <span>{{ $donation->phone ?? '-' }}</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-gray-50">
+                <div class="flex justify-between gap-4 py-1 border-b border-gray-50">
                     <span class="text-gray-400">Email:</span>
                     <span>{{ $donation->email ?? '-' }}</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-gray-50">
+                <div class="flex justify-between gap-4 py-1 border-b border-gray-50">
                     <span class="text-gray-400">Jenis Donasi:</span>
                     <span class="font-semibold text-emerald-700">{{ $donation->donation_type_label }}</span>
                 </div>
             </div>
 
             <div class="space-y-3">
-                <div class="flex justify-between py-1 border-b border-gray-50">
+                <div class="flex justify-between gap-4 py-1 border-b border-gray-50">
                     <span class="text-gray-400">Nominal:</span>
                     <span class="font-mono font-black text-sm text-emerald-700">{{ $donation->amount_formatted }}</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-gray-50">
+                <div class="flex justify-between gap-4 py-1 border-b border-gray-50">
                     <span class="text-gray-400">Bank Pengirim:</span>
                     <span>{{ $donation->bank_name ?? '-' }}</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-gray-50">
+                <div class="flex justify-between gap-4 py-1 border-b border-gray-50">
                     <span class="text-gray-400">Tanggal Transfer:</span>
                     <span>{{ $donation->transfer_date ? $donation->transfer_date->format('d M Y') : '-' }}</span>
                 </div>
-                <div class="flex justify-between py-1 border-b border-gray-50">
+                <div class="flex justify-between gap-4 py-1 border-b border-gray-50">
                     <span class="text-gray-400">Dikonfirmasi Oleh:</span>
                     <span>{{ $donation->confirmedBy->name ?? '-' }}</span>
                 </div>

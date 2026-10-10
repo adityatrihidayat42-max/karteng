@@ -12,6 +12,8 @@
         <form action="{{ route('admin.banoms.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
 
+            @include('admin.banoms._preset')
+
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">Nama Banom <span class="text-red-500">*</span></label>

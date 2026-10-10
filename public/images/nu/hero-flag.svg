@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="flagBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#003322"/>
+      <stop offset="50%" stop-color="#014d33"/>
+      <stop offset="100%" stop-color="#002a1a"/>
+    </linearGradient>
+    <radialGradient id="flagGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#fcd12b" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#fcd12b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#003322" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="fabric">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#flagBg)"/>
+  <ellipse cx="960" cy="432" rx="800" ry="350" fill="url(#flagGlow)"/>
+  <!-- Flag shape with fabric texture -->
+  <g transform="translate(460, 180)">
+    <path d="M0 0 L1000 0 Q1020 360 1000 720 L0 720 Q-20 360 0 0" fill="#fcd12b">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite" values="M0 0 L1000 0 Q1020 360 1000 720 L0 720 Q-20 360 0 0; M0 0 L1000 0 Q1030 360 1000 720 L0 720 Q-30 360 0 0; M0 0 L1000 0 Q1020 360 1000 720 L0 720 Q-20 360 0 0"/>
+    </path>
+    <rect x="0" y="0" width="1000" height="720" fill="url(#fabric)" opacity="0.1" filter="url(#fabric)"/>
+  </g>
+  <!-- NU emblem on flag -->
+  <circle cx="960" cy="540" r="140" fill="#002a1a" opacity="0.3"/>
+  <text x="960" y="560" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#fcd12b" text-anchor="middle" opacity="0.4">NU</text>
+  <text x="960" y="630" font-family="Arial, sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" opacity="0.3">NAHDLATUL ULAMA</text>
+  <!-- Vignette -->
+  <radialGradient id="vignette2" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0.5"/>
+  </radialGradient>
+  <rect width="1920" height="1080" fill="url(#vignette2)"/>
+</svg>

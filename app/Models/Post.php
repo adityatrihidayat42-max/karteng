@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasUniqueSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUniqueSlug;
 
     protected $fillable = [
         'category_id',
@@ -31,10 +31,8 @@ class Post extends Model
     protected static function boot()
     {
         parent::boot();
+        
         static::creating(function ($model) {
-            if (empty($model->slug)) {
-                $model->slug = Str::slug($model->title);
-            }
             if ($model->status === 'published' && empty($model->published_at)) {
                 $model->published_at = now();
             }
@@ -63,7 +61,7 @@ class Post extends Model
         if ($this->featured_image) {
             return asset('storage/' . $this->featured_image);
         }
-        return asset('images/post-default.jpg');
+        return asset('images/post-default.svg');
     }
 
     public function getReadingTimeAttribute(): int

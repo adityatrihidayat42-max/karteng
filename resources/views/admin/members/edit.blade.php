@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-5">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between gap-3">
         <a href="{{ route('admin.members.index') }}" class="text-xs font-semibold text-gray-500 hover:text-emerald-700">
             &larr; Kembali ke Daftar Anggota
         </a>

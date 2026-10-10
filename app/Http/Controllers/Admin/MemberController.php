@@ -156,6 +156,7 @@ class MemberController extends Controller
     public function approve(Member $member)
     {
         $member->status = 'aktif';
+        $member->tampil_publik = true; // Otomatis tampilkan di direktori publik saat disetujui
         if (empty($member->nis)) {
             $member->nis = Member::generateNis();
         }
@@ -171,5 +172,25 @@ class MemberController extends Controller
         $member->save();
 
         return back()->with('success', "Pendaftaran {$member->nama_lengkap} ditolak.");
+    }
+
+    public function togglePublic(Member $member)
+    {
+        $member->tampil_publik = !$member->tampil_publik;
+        $member->save();
+
+        $message = $member->tampil_publik
+            ? "Anggota {$member->nama_lengkap} ditampilkan di direktori publik."
+            : "Anggota {$member->nama_lengkap} disembunyikan dari direktori publik.";
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+                'tampil_publik' => $member->tampil_publik,
+            ]);
+        }
+
+        return back()->with('success', $message);
     }
 }

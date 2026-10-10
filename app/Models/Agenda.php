@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasUniqueSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Agenda extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUniqueSlug;
 
     protected $fillable = [
         'title',
@@ -27,23 +27,13 @@ class Agenda extends Model
         'end_at'   => 'datetime',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (empty($model->slug)) {
-                $model->slug = Str::slug($model->title);
-            }
-        });
-    }
-
     // Accessors
     public function getImageUrlAttribute(): string
     {
         if ($this->image) {
             return asset('storage/' . $this->image);
         }
-        return asset('images/agenda-default.jpg');
+        return asset('images/agenda-default.svg');
     }
 
     public function getIsPastAttribute(): bool

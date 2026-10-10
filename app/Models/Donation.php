@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Donation extends Model
 {
@@ -38,13 +39,26 @@ class Donation extends Model
         return $this->belongsTo(User::class, 'confirmed_by');
     }
 
-    // Generate transaction code
+    // Generate transaction code - Thread-safe with DB lock
     public static function generateTransactionCode(): string
     {
-        $prefix = 'INF';
-        $date = date('Ymd');
-        $last = static::whereDate('created_at', today())->count() + 1;
-        return $prefix . $date . str_pad($last, 4, '0', STR_PAD_LEFT);
+        return DB::transaction(function () {
+            $prefix = 'INF';
+            $date = date('Ymd');
+            
+            // Lock the latest donation for today to prevent race conditions
+            $last = static::whereDate('created_at', today())
+                ->orderByDesc('id')
+                ->lockForUpdate()
+                ->first();
+
+            $sequence = 1;
+            if ($last && preg_match('/INF\d{8}(\d{4})/', $last->transaction_code, $matches)) {
+                $sequence = intval($matches[1]) + 1;
+            }
+
+            return $prefix . $date . str_pad($sequence, 4, '0', STR_PAD_LEFT);
+        });
     }
 
     // Accessors

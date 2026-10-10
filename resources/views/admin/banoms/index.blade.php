@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="space-y-5">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
             <h2 class="text-xl font-bold text-gray-800">Direktori Badan Otonom (BANOM)</h2>
             <p class="text-xs text-gray-500">Kelola banom tingkat ranting (Ansor, Banser, Fatayat, IPNU, IPPNU, dll).</p>
@@ -15,8 +15,8 @@
         </a>
     </div>
 
-    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-        <table class="w-full text-left text-xs">
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-x-auto">
+        <table class="w-full min-w-[720px] text-left text-xs">
             <thead class="bg-gray-50 text-gray-500 font-bold uppercase tracking-wider border-b border-gray-100">
                 <tr>
                     <th class="px-5 py-3.5">Logo & Nama</th>

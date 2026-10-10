@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#012a1e"/>
+      <stop offset="30%" stop-color="#024d33"/>
+      <stop offset="60%" stop-color="#055631"/>
+      <stop offset="100%" stop-color="#013c2a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#0a7d4f" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#055631" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#013c2a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <ellipse cx="960" cy="324" rx="1200" ry="400" fill="url(#glow)"/>
+  <!-- Silhouette mosque -->
+  <g fill="#001f15" opacity="0.8">
+    <!-- Main dome -->
+    <ellipse cx="960" cy="720" rx="280" ry="180"/>
+    <path d="M680 720 Q960 540 1240 720"/>
+    <!-- Minarets -->
+    <rect x="520" y="360" width="60" height="360" rx="5"/>
+    <rect x="1340" y="360" width="60" height="360" rx="5"/>
+    <polygon points="520,360 550,330 580,360" />
+    <polygon points="1340,360 1370,330 1400,360" />
+    <!-- Side structures -->
+    <rect x="320" y="600" width="200" height="200" rx="10"/>
+    <rect x="1400" y="600" width="200" height="200" rx="10"/>
+    <path d="M320 600 Q420 520 520 600" />
+    <path d="M1400 600 Q1500 520 1600 600" />
+  </g>
+  <!-- Subtle texture -->
+  <rect width="1920" height="1080" fill="url(#noise)" opacity="0.03"/>
+  <!-- Vignette -->
+  <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0.4"/>
+  </radialGradient>
+  <rect width="1920" height="1080" fill="url(#vignette)"/>
+</svg>

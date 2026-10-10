@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendDonationConfirmationEmail;
 use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +56,13 @@ class DonationController extends Controller
         $donation->confirmed_by = Auth::id();
         $donation->save();
 
-        return back()->with('success', "Donasi #{$donation->transaction_code} dari {$donation->donor_name} berhasil dikonfirmasi.");
+        // Dispatch email job to queue (background)
+        if ($donation->email) {
+            SendDonationConfirmationEmail::dispatch($donation->id)
+                ->onQueue('emails');
+        }
+
+        return back()->with('success', "Donasi #{$donation->transaction_code} dari {$donation->donor_name} berhasil dikonfirmasi. Email konfirmasi akan dikirim ke donatur.");
     }
 
     public function reject(Donation $donation)

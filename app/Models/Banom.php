@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasUniqueSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Banom extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUniqueSlug;
 
     protected $fillable = [
         'nama',
@@ -28,20 +28,12 @@ class Banom extends Model
         'sort_order' => 'integer',
     ];
 
-    // Auto-generate slug
-    protected static function boot()
+    /**
+     * Get the source column to generate slug from.
+     */
+    public function getSlugSourceColumn(): string
     {
-        parent::boot();
-        static::creating(function ($model) {
-            if (empty($model->slug)) {
-                $model->slug = Str::slug($model->nama);
-            }
-        });
-        static::updating(function ($model) {
-            if ($model->isDirty('nama') && empty($model->slug)) {
-                $model->slug = Str::slug($model->nama);
-            }
-        });
+        return 'nama';
     }
 
     // Relationships
@@ -56,7 +48,7 @@ class Banom extends Model
         if ($this->logo) {
             return asset('storage/' . $this->logo);
         }
-        return asset('images/banom-default.png');
+        return asset('images/banom-default.svg');
     }
 
     public function getFotoUrlAttribute(): string
@@ -64,7 +56,7 @@ class Banom extends Model
         if ($this->foto) {
             return asset('storage/' . $this->foto);
         }
-        return asset('images/banom-default.png');
+        return asset('images/banom-default.svg');
     }
 
     // Scopes

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Member extends Model
 {
@@ -46,30 +47,38 @@ class Member extends Model
         return $this->belongsTo(Banom::class);
     }
 
-    // Generate NIS (Nomor Induk Santri) - Guaranteed Unique
+    // Generate NIS (Nomor Induk Santri) - Thread-safe with DB lock
     public static function generateNis(): string
     {
-        $year = date('Y');
-        $prefix = 'NIS-' . $year . '-';
-        $last = static::where('nis', 'like', $prefix . '%')
-            ->orderByDesc('id')
-            ->first();
+        return DB::transaction(function () {
+            // Lock the table for this transaction to prevent race conditions
+            $year = date('Y');
+            $prefix = 'NIS-' . $year . '-';
+            
+            // Get the last NIS for this year with lock
+            $last = static::where('nis', 'like', $prefix . '%')
+                ->orderByDesc('id')
+                ->lockForUpdate()
+                ->first();
 
-        $nextNumber = 1;
-        if ($last && preg_match('/NIS-\d{4}-(\d+)/', $last->nis, $matches)) {
-            $nextNumber = intval($matches[1]) + 1;
-        } else {
-            $maxId = static::max('id') ?? 0;
-            $nextNumber = $maxId + 1;
-        }
+            $nextNumber = 1;
+            if ($last && preg_match('/NIS-\d{4}-(\d+)/', $last->nis, $matches)) {
+                $nextNumber = intval($matches[1]) + 1;
+            } else {
+                $maxId = static::max('id') ?? 0;
+                $nextNumber = $maxId + 1;
+            }
 
-        $nis = $prefix . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
-        while (static::where('nis', $nis)->exists()) {
-            $nextNumber++;
             $nis = $prefix . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
-        }
+            
+            // Double-check uniqueness within transaction
+            while (static::where('nis', $nis)->exists()) {
+                $nextNumber++;
+                $nis = $prefix . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+            }
 
-        return $nis;
+            return $nis;
+        });
     }
 
     // Alias for compatibility

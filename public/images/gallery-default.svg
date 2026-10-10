@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#e8f5f0"/>
+  <text x="200" y="130" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#027f52" text-anchor="middle">GALERI</text>
+  <text x="200" y="170" font-family="Arial, sans-serif" font-size="18" fill="#027f52" text-anchor="middle">NU Gumelar</text>
+  <circle cx="200" cy="220" r="20" fill="none" stroke="#fcd12b" stroke-width="2"/>
+  <path d="M190 220 L200 230 L215 210" fill="none" stroke="#fcd12b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

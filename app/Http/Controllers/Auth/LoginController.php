@@ -11,7 +11,11 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         if (Auth::check()) {
-            return redirect()->route('admin.dashboard');
+            // Redirect berdasarkan role: admin ke dashboard admin, user biasa ke home
+            if (Auth::user()->hasRole('admin')) {
+                return redirect()->route('admin.dashboard');
+            }
+            return redirect()->route('home');
         }
         return view('auth.login');
     }
@@ -27,7 +31,17 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('admin.dashboard'))->with('success', 'Selamat datang kembali, ' . Auth::user()->name);
+
+            // Redirect berdasarkan role setelah login
+            $user = Auth::user();
+            if ($user->hasRole('admin')) {
+                return redirect()->intended(route('admin.dashboard'))
+                    ->with('success', 'Selamat datang kembali, ' . $user->name);
+            }
+
+            // User tanpa role admin diarahkan ke home
+            return redirect()->intended(route('home'))
+                ->with('success', 'Selamat datang, ' . $user->name);
         }
 
         return back()->withErrors([
