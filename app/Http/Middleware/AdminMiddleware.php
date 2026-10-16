@@ -12,7 +12,7 @@ class AdminMiddleware
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, string ...$roles): Response
     {
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
@@ -21,7 +21,7 @@ class AdminMiddleware
         /** @var \App\Models\User $user */ // Tambahkan baris ini
         $user = Auth::user();
         
-        if (!$user->hasAnyRole(['admin', 'pengurus']) && $user->email !== 'admin@nu.or.id') {
+        if (!$user->hasAnyRole($roles ?: ['admin', 'pengurus'])) {
             abort(403, 'Anda tidak memiliki hak akses ke halaman administrator.');
         }
 

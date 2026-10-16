@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 // AUTHENTICATION
 // =========================================================================
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/login', [LoginController::class, 'login'])->middleware('throttle:5,1');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // =========================================================================
@@ -39,7 +39,7 @@ Route::get('/verifikasi-kta/{nis}', [PublicMemberController::class, 'verify'])->
 
 // Pendaftaran Anggota Online
 Route::get('/daftar-anggota', [RegistrationController::class, 'create'])->name('daftar-anggota');
-Route::post('/daftar-anggota', [RegistrationController::class, 'store'])->name('daftar-anggota.store');
+Route::post('/daftar-anggota', [RegistrationController::class, 'store'])->name('daftar-anggota.store')->middleware('throttle:5,10');
 
 // Banom
 Route::get('/banom', [PublicBanomController::class, 'index'])->name('banom.index');
@@ -59,9 +59,9 @@ Route::get('/galeri/{gallery:slug}', [PublicGalleryController::class, 'show'])->
 
 // Donasi / Infaq
 Route::get('/donasi', [PublicDonationController::class, 'index'])->name('donasi.index');
-Route::post('/donasi', [PublicDonationController::class, 'store'])->name('donasi.store');
+Route::post('/donasi', [PublicDonationController::class, 'store'])->name('donasi.store')->middleware('throttle:5,10');
 Route::get('/donasi/{transaction_code}', [PublicDonationController::class, 'show'])->name('donasi.show');
-Route::post('/donasi/{transaction_code}/upload-bukti', [PublicDonationController::class, 'uploadProof'])->name('donasi.upload-bukti');
+Route::post('/donasi/{transaction_code}/upload-bukti', [PublicDonationController::class, 'uploadProof'])->name('donasi.upload-bukti')->middleware('throttle:10,10');
 
 // =========================================================================
 // ADMIN ROUTES (Protected by auth + admin role)
@@ -105,9 +105,9 @@ Route::resource('banoms', Admin\BanomController::class)
     Route::post('donations/{donation}/reject', [Admin\DonationController::class, 'reject'])->name('donations.reject');
 
     // User / Pengurus CRUD
-    Route::resource('users', Admin\UserController::class);
+    Route::resource('users', Admin\UserController::class)->middleware('admin:admin');
 
     // Profil Organisasi
-    Route::get('organization', [Admin\OrganizationController::class, 'edit'])->name('organization.edit');
-    Route::put('organization', [Admin\OrganizationController::class, 'update'])->name('organization.update');
+    Route::get('organization', [Admin\OrganizationController::class, 'edit'])->name('organization.edit')->middleware('admin:admin');
+    Route::put('organization', [Admin\OrganizationController::class, 'update'])->name('organization.update')->middleware('admin:admin');
 });

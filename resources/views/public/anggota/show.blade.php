@@ -25,7 +25,7 @@
                     </span>
                 </div>
                 <p class="text-sm text-gray-500 font-medium">
-                    {{ $member->jabatan ? $member->jabatan . ' — ' : '' }} {{ $member->banom ? $member->banom->nama : 'Pengurus Ranting' }}
+                    {{ $member->jabatan ? $member->jabatan . ' — ' : '' }} {{ $member->banom ? $member->banom->nama : 'Pengurus Ranting Karangtengah' }}
                 </p>
                 <div class="text-xs text-gray-400 pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-4">
                     <span><i class="fas fa-calendar-alt text-emerald-600 mr-1"></i> Bergabung: {{ $member->tanggal_bergabung ? $member->tanggal_bergabung->format('d M Y') : $member->created_at->format('d M Y') }}</span>

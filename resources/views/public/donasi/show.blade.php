@@ -82,7 +82,7 @@
                 </div>
                 <div>Bank: <strong>{{ $profile->rekening_bank ?? 'Bank Syariah Indonesia' }}</strong></div>
                 <div>Nomor Rekening: <strong class="font-mono text-sm select-all">{{ $profile->nomor_rekening ?? '7123-4567-8901' }}</strong></div>
-                <div>Atas Nama: <strong>{{ $profile->nama_rekening ?? 'Pengurus Ranting Nahdlatul Ulama' }}</strong></div>
+                <div>Atas Nama: <strong>{{ $profile->nama_rekening ?? 'Pengurus Ranting Nahdlatul Ulama Karangtengah' }}</strong></div>
                 <div class="pt-2 border-t border-emerald-100">
                     Nominal transfer: <strong class="text-emerald-800">{{ $donation->amount_formatted }}</strong>
                 </div>

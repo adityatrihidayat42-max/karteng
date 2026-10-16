@@ -53,7 +53,7 @@
         <div>
             <h4>Sekretariat</h4>
             <ul class="contact">
-                <li><i class="fas fa-location-dot"></i><span>{{ data_get($fp, 'alamat_lengkap', 'Kantor Sekretariat Ranting Nahdlatul Ulama, Indonesia') }}</span></li>
+                <li><i class="fas fa-location-dot"></i><span>{{ data_get($fp, 'alamat_lengkap', 'Kantor Sekretariat Ranting Nahdlatul Ulama Karangtengah, Indonesia') }}</span></li>
                 <li><i class="fas fa-phone"></i><span>{{ data_get($fp, 'telepon', '+62 812-3456-7890') }}</span></li>
                 <li><i class="fas fa-envelope"></i><span>{{ data_get($fp, 'email', 'sekretariat@nu.or.id') }}</span></li>
                 <li><i class="fas fa-clock"></i><span>Senin - Sabtu: 08.00 - 16.00 WIB</span></li>

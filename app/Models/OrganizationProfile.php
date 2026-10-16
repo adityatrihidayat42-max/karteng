@@ -45,7 +45,7 @@ class OrganizationProfile extends Model
     public static function getInstance(): static
     {
         return static::firstOrCreate([], [
-            'nama_organisasi' => 'NU Ranting',
+            'nama_organisasi' => 'NU Ranting Karangtengah',
             'tagline'         => 'Menegakkan Ajaran Islam Ahlussunah Wal Jamaah',
         ]);
     }

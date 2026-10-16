@@ -65,7 +65,7 @@
                 <p class="text-xs text-gray-400 font-mono mb-2">{{ $member->nis ?? 'Anggota Terdaftar' }}</p>
 
                 <div class="mt-auto w-full pt-4 border-t border-gray-100 flex items-center justify-between text-xs">
-                    <span class="text-gray-500 truncate max-w-[120px]">{{ $member->desa_kelurahan ?? 'Ranting NU' }}</span>
+                    <span class="text-gray-500 truncate max-w-[120px]">{{ $member->desa_kelurahan ?? 'Ranting NU Karangtengah' }}</span>
                     <a href="{{ route('anggota.show', $member->id) }}" class="text-emerald-700 font-bold hover:text-emerald-900">
                         Profil &rarr;
                     </a>

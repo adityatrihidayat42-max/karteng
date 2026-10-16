@@ -64,7 +64,7 @@
                 <div class="space-y-1 text-left flex-1 min-w-0">
                     <div class="text-sm font-black tracking-tight text-white truncate">{{ $member->nama_lengkap }}</div>
                     <div class="text-[10px] text-emerald-200 font-semibold">{{ $member->banom ? $member->banom->nama : 'Warga NU' }} &bull; {{ $member->jabatan ?? 'Anggota' }}</div>
-                    <div class="text-[9px] text-gray-300">{{ $member->desa_kelurahan ?? 'Ranting' }}, {{ $member->kecamatan ?? '' }}</div>
+                    <div class="text-[9px] text-gray-300">{{ $member->desa_kelurahan ?? 'Ranting Karangtengah' }}, {{ $member->kecamatan ?? '' }}</div>
                     <div class="text-[8px] text-emerald-300 font-mono pt-1">
                         Masa Berlaku: <strong class="text-amber-300 font-sans">2024 - 2029</strong>
                     </div>

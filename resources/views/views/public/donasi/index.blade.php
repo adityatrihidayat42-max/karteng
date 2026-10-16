@@ -45,7 +45,7 @@
                     <div class="font-mono text-xl sm:text-2xl font-bold tracking-wider text-amber-300 select-all">
                         {{ $profile->nomor_rekening ?? '7123-4567-8901' }}
                     </div>
-                    <span class="text-xs text-emerald-100 block">a.n. {{ $profile->nama_rekening ?? 'Pengurus Ranting Nahdlatul Ulama' }}</span>
+                    <span class="text-xs text-emerald-100 block">a.n. {{ $profile->nama_rekening ?? 'Pengurus Ranting Nahdlatul Ulama Karangtengah' }}</span>
                 </div>
                 <p class="text-[11px] text-emerald-300/80">
                     Pastikan transfer ditujukan ke rekening resmi atas nama jam'iyyah.

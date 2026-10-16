@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ isset($title) ? $title . ' — ' : '' }}{{ config('app.name', 'NU Ranting') }}</title>
-    <meta name="description" content="{{ $description ?? 'Sistem Informasi Nahdlatul Ulama Ranting' }}">
+    <title>{{ isset($title) ? $title . ' — ' : '' }}{{ config('app.name', 'NU Ranting Karangtengah') }}</title>
+    <meta name="description" content="{{ $description ?? 'Sistem Informasi Nahdlatul Ulama Ranting Karangtengah' }}">
     <meta name="theme-color" content="#027f52">
 
     <!-- Open Graph -->

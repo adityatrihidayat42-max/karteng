@@ -131,7 +131,7 @@
                         <div class="space-y-1 text-left flex-1 min-w-0">
                             <div class="text-sm font-black tracking-tight text-white truncate">{{ $selectedMember->nama_lengkap }}</div>
                             <div class="text-[10px] text-emerald-200 font-semibold">{{ $selectedMember->banom ? $selectedMember->banom->nama : 'Warga NU' }} &bull; {{ $selectedMember->jabatan ?? 'Anggota' }}</div>
-                            <div class="text-[9px] text-gray-300">{{ $selectedMember->desa_kelurahan ?? 'Ranting' }}, {{ $selectedMember->kecamatan ?? '' }}</div>
+                            <div class="text-[9px] text-gray-300">{{ $selectedMember->desa_kelurahan ?? 'Ranting Karangtengah' }}, {{ $selectedMember->kecamatan ?? '' }}</div>
                             <div class="text-[8px] text-emerald-300 font-mono pt-1">
                                 Masa Berlaku: <strong class="text-amber-300 font-sans">2024 - 2029</strong>
                             </div>
@@ -199,7 +199,7 @@
                                 <span class="text-gray-400 text-[11px]">&bull; {{ $m->jabatan ?? 'Anggota' }}</span>
                             </td>
                             <td class="px-4 py-3 text-gray-500 text-[11px]">
-                                {{ $m->desa_kelurahan ?? 'Gumelar' }}
+                                {{ $m->desa_kelurahan ?? 'Karangtengah' }}
                             </td>
                             <td class="px-4 py-3 text-right">
                                 <div class="flex items-center justify-end gap-1.5">

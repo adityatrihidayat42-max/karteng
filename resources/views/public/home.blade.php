@@ -222,9 +222,9 @@
 @section('content')
 @php
     $logo = data_get($profile, 'logo');
-    $orgName = data_get($profile, 'nama_organisasi') ?: 'NU Ranting';
+    $orgName = data_get($profile, 'nama_organisasi') ?: 'NU Ranting Karangtengah';
     $tagline = data_get($profile, 'tagline') ?: 'Menegakkan Ajaran Islam Ahlussunnah Wal Jamaah';
-    $heroDesc = 'Selamat datang di website resmi Pengurus Ranting Nahdlatul Ulama. Mari bersama-sama menjaga nilai-nilai Islam yang damai, toleran dan penuh keberkahan.';
+    $heroDesc = 'Selamat datang di website resmi Pengurus Ranting Nahdlatul Ulama Karangtengah. Mari bersama-sama menjaga nilai-nilai Islam yang damai, toleran dan penuh keberkahan.';
     $galleryItems = collect($galleries ?? [])->take(5);
 @endphp
 
@@ -322,7 +322,7 @@
     <div class="wrap about-grid">
         <div>
             <p class="lead" data-scrub>
-                {{ \Illuminate\Support\Str::limit(data_get($profile, 'tentang') ?: 'Pengurus Ranting Nahdlatul Ulama adalah struktur organisasi NU di tingkat desa/kelurahan yang bersentuhan langsung dengan denyut nadi jamaah nahdliyin. Kami berkhidmat untuk mewujudkan kemaslahatan umat dalam bingkai Islam rahmatan lil alamin.', 320) }}
+                {{ \Illuminate\Support\Str::limit(data_get($profile, 'tentang') ?: 'Pengurus Ranting Nahdlatul Ulama Karangtengah adalah struktur organisasi NU di tingkat desa/kelurahan yang bersentuhan langsung dengan denyut nadi jamaah nahdliyin. Kami berkhidmat untuk mewujudkan kemaslahatan umat dalam bingkai Islam rahmatan lil alamin.', 320) }}
             </p>
             <div class="vm-grid">
                 <div class="vm-card" data-scrub data-delay="60">
@@ -347,11 +347,11 @@
                     </div>
                     <div>
                         <strong>{{ $orgName }}</strong>
-                        <span>{{ data_get($profile, 'wilayah') ?: 'Ranting NU' }}</span>
+                        <span>{{ data_get($profile, 'wilayah') ?: 'Ranting NU Karangtengah' }}</span>
                     </div>
                 </div>
                 <ul class="cc-list">
-                    <li><i class="fas fa-location-dot"></i><span>{{ data_get($profile, 'alamat_lengkap') ?: 'Sekretariat Ranting Nahdlatul Ulama' }}</span></li>
+                    <li><i class="fas fa-location-dot"></i><span>{{ data_get($profile, 'alamat_lengkap') ?: 'Sekretariat Ranting Nahdlatul Ulama Karangtengah' }}</span></li>
                     <li><i class="fas fa-phone"></i><span>{{ data_get($profile, 'telepon') ?: '+62 812-3456-7890' }}</span></li>
                     <li><i class="fas fa-envelope"></i><span>{{ data_get($profile, 'email') ?: 'ranting@nu.or.id' }}</span></li>
                 </ul>

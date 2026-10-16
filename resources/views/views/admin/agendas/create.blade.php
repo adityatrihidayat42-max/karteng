@@ -39,7 +39,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">Penyelenggara</label>
-                    <input type="text" name="organizer" value="{{ old('organizer', 'Pengurus Ranting NU') }}"
+                    <input type="text" name="organizer" value="{{ old('organizer', 'Pengurus Ranting NU Karangtengah') }}"
                            class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs outline-none">
                 </div>
             </div>

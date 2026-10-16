@@ -33,7 +33,7 @@
                 </div>
                 <div class="flex justify-between">
                     <span class="text-gray-400">Desa / Wilayah:</span>
-                    <span class="font-semibold text-gray-800">{{ $member->desa_kelurahan ?? 'Ranting' }}</span>
+                    <span class="font-semibold text-gray-800">{{ $member->desa_kelurahan ?? 'Ranting Karangtengah' }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span class="text-gray-400">Status Keanggotaan:</span>

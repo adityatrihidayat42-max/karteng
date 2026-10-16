@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ isset($title) ? $title . ' — ' : '' }}{{ config('app.name', 'NU Ranting') }}</title>
-    <meta name="description" content="{{ $description ?? 'Sistem Informasi Nahdlatul Ulama Ranting' }}">
+    <title>{{ isset($title) ? $title . ' — ' : '' }}{{ config('app.name', 'NU Ranting Karangtengah') }}</title>
+    <meta name="description" content="{{ $description ?? 'Sistem Informasi Nahdlatul Ulama Ranting Karangtengah' }}">
     <meta name="theme-color" content="#027f52">
 
     <!-- Open Graph -->
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- AOS (dipakai halaman lain) -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="{{ asset('vendor/aos/aos.css') }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -188,7 +188,7 @@
     @include('components.footer')
 
     <!-- AOS Init -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="{{ asset('vendor/aos/aos.js') }}"></script>
     <script>
         if (window.AOS) {
             AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 60 });

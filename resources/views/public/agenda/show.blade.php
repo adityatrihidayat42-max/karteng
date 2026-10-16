@@ -33,7 +33,7 @@
             </div>
             <div>
                 <div class="text-xs text-emerald-700 font-semibold mb-1">Penyelenggara:</div>
-                <div class="font-bold text-sm">{{ $agenda->organizer ?? 'Pengurus Ranting NU' }}</div>
+                <div class="font-bold text-sm">{{ $agenda->organizer ?? 'Pengurus Ranting NU Karangtengah' }}</div>
             </div>
         </div>
 

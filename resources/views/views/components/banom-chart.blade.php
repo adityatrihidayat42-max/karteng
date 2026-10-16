@@ -122,14 +122,14 @@
 @endphp
 @php $oc_n = count($items); $oc_cls = $oc_n <= 6 ? '' : ($oc_n <= 8 ? 'oc-compact' : ($oc_n <= 10 ? 'oc-dense' : 'oc-stack')); @endphp
 <div class="oc {{ $oc_cls }}" data-scrub>
-    <div class="oc-title-wrap"><h3 class="oc-title">Struktur Badan Otonom NU Ranting</h3></div>
+    <div class="oc-title-wrap"><h3 class="oc-title">Struktur Badan Otonom NU Ranting Karangtengah</h3></div>
 
     <div class="oc-root">
-        <span class="oc-tab">NU Ranting</span>
+        <span class="oc-tab">NU Ranting Karangtengah</span>
         <div class="oc-ring"><span><i class="fas fa-mosque"></i></span></div>
         <div class="oc-plate">
             <span class="role">Pengurus</span>
-            <div class="who">Nahdlatul Ulama<small>Pimpinan Ranting</small></div>
+            <div class="who">Nahdlatul Ulama<small>Pimpinan Ranting Karangtengah</small></div>
         </div>
     </div>
 

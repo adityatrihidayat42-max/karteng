@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Login Pengurus — {{ config('app.name', 'NU Gumelar') }}</title>
+    <title>Login Pengurus — {{ config('app.name', 'NU Karangtengah') }}</title>
     @if(file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
@@ -27,7 +27,7 @@
             <a href="{{ route('home') }}" class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-800 border-4 border-amber-400 shadow-xl shadow-emerald-950/50 mb-4 hover:scale-105 transition-transform duration-300">
                 <i class="fas fa-star-and-crescent text-amber-300 text-3xl"></i>
             </a>
-            <h1 class="text-2xl font-black text-white tracking-tight">{{ config('app.name', 'NU Gumelar') }}</h1>
+            <h1 class="text-2xl font-black text-white tracking-tight">{{ config('app.name', 'NU Karangtengah') }}</h1>
             <p class="text-emerald-300 text-sm mt-1">Portal Khusus Pengurus & Administrator</p>
         </div>
 
@@ -113,7 +113,7 @@
         </div>
 
         <div class="text-center mt-6">
-            <p class="text-xs text-emerald-300/80">&copy; {{ date('Y') }} Nahdlatul Ulama Ranting. Berkhidmat untuk Umat.</p>
+            <p class="text-xs text-emerald-300/80">&copy; {{ date('Y') }} Nahdlatul Ulama Ranting Karangtengah. Berkhidmat untuk Umat.</p>
         </div>
     </div>
 </body>

@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Wilayah / Desa</label>
-                        <input type="text" name="wilayah" value="{{ old('wilayah', $profile->wilayah) }}" placeholder="Contoh: Desa Gumelar"
+                        <input type="text" name="wilayah" value="{{ old('wilayah', $profile->wilayah) }}" placeholder="Contoh: Desa Karangtengah"
                                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs outline-none">
                     </div>
                     <div>
@@ -87,7 +87,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">Atas Nama Rekening</label>
-                        <input type="text" name="nama_rekening" value="{{ old('nama_rekening', $profile->nama_rekening) }}" placeholder="PRNU Gumelar"
+                        <input type="text" name="nama_rekening" value="{{ old('nama_rekening', $profile->nama_rekening) }}" placeholder="PRNU Karangtengah"
                                class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs outline-none">
                     </div>
                 </div>
