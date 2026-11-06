@@ -4,7 +4,7 @@
 <header id="main-nav" class="nu-nav">
     <div class="nu-nav-inner">
         <!-- Brand -->
-        <a href="{{ route('home') }}" class="nu-brand" aria-label="{{ config('app.name', 'NU Ranting') }}">
+        <a href="{{ route('home') }}" class="nu-brand" aria-label="{{ config('app.name', 'NU Ranting Karangtengah') }}">
             <span class="nu-brand-logo">
                 @if($navLogo)
                     <img src="{{ asset('storage/' . $navLogo) }}" alt="Logo NU">

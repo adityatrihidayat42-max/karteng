@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ isset($title) ? $title . ' — ' : '' }}{{ config('app.name', 'NU Ranting') }}</title>
-    <meta name="description" content="{{ $description ?? 'Sistem Informasi Nahdlatul Ulama Ranting' }}">
+    <title>{{ isset($title) ? $title . ' — ' : '' }}{{ config('app.name', 'NU Ranting Karangtengah') }}</title>
+    <meta name="description" content="{{ $description ?? 'Sistem Informasi Nahdlatul Ulama Ranting Karangtengah' }}">
     <meta name="theme-color" content="#027f52">
 
     <!-- Open Graph -->
@@ -15,6 +15,17 @@
     <meta property="og:url" content="{{ url()->current() }}">
 
     <script>document.documentElement.classList.add('js');</script>
+    <script>
+        /* Mode animasi: 'simple' (default kunjungan pertama), 'full', 'off'. Disimpan di localStorage. */
+        (function () {
+            var m = null;
+            try { m = localStorage.getItem('nu-motion'); } catch (e) {}
+            if (m !== 'simple' && m !== 'full' && m !== 'off') {
+                m = (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'off' : 'simple';
+            }
+            document.documentElement.setAttribute('data-motion', m);
+        })();
+    </script>
 
     @if(file_exists(public_path('build/manifest.json')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -53,7 +64,7 @@
             --nu-line: #e3ece8;
             --nu-nav-h: 72px;
         }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
         body { margin: 0; overflow-x: clip; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--nu-bg); color: var(--nu-ink); }
         .font-playfair { font-family: 'Playfair Display', Georgia, serif; }
 
@@ -155,6 +166,41 @@
         .nu-btn-text { color: #fff; font-weight: 700; padding: 13px 8px; }
         .nu-btn-text i { transition: transform .2s; }
         .nu-btn-text:hover i { transform: translateX(4px); }
+
+        /* ================================================================
+           MODE ANIMASI  (html[data-motion] = simple | full | off)
+           ================================================================ */
+        /* SEDERHANA: hanya fade singkat, tanpa gerak berulang / geser besar */
+        html[data-motion="simple"] [data-aos] { transform: none !important; transition-duration: .45s !important; }
+        html[data-motion="simple"] .intro > * { transform: none !important; animation-duration: .5s !important; animation-delay: 0s !important; }
+        html[data-motion="simple"] .gradient-animate,
+        html[data-motion="simple"] .float-animation,
+        html[data-motion="simple"] .scroll-hint .mouse::after { animation: none !important; }
+        html[data-motion="simple"] .card-hover:hover { transform: none; }
+        html[data-motion="simple"] { scroll-behavior: auto; }
+        html[data-motion="simple"] .mo-hide { opacity: 0; }
+        html[data-motion="simple"] .mo-hide.mo-show { opacity: 1; transition: opacity .5s ease; }
+
+        /* MATI: tidak ada animasi & transisi sama sekali */
+        html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="off"] *::after {
+            animation: none !important; transition: none !important; scroll-behavior: auto !important;
+        }
+        html[data-motion="off"] [data-aos], html[data-motion="off"] .intro > *,
+        html[data-motion="off"] .mo-hide { opacity: 1 !important; transform: none !important; }
+
+        /* Tombol pengaturan animasi */
+        .mo-wrap { position: fixed; left: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 65; font-family: inherit; }
+        .mo-fab { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--nu-line); background: #fff; color: var(--nu-green); font-size: 17px; cursor: pointer; box-shadow: 0 6px 20px rgba(1,60,42,.2); display: grid; place-items: center; }
+        .mo-panel { display: none; position: absolute; left: 0; bottom: 54px; width: 220px; background: #fff; border: 1px solid var(--nu-line); border-radius: 16px; box-shadow: 0 16px 40px rgba(1,60,42,.22); padding: 10px; }
+        .mo-panel.open { display: block; }
+        .mo-panel h5 { margin: 2px 6px 8px; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--nu-muted); }
+        @media (max-width: 640px) { .mo-fab { width: 38px; height: 38px; font-size: 15px; opacity: .88; } .mo-wrap { left: 10px; } .mo-panel { bottom: 46px; } }
+        .mo-opt { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; border: 0; border-radius: 10px; background: transparent; color: var(--nu-ink); font: inherit; font-size: 13px; font-weight: 600; text-align: left; cursor: pointer; }
+        .mo-opt small { display: block; font-size: 10.5px; font-weight: 500; color: var(--nu-muted); }
+        .mo-opt i { width: 18px; text-align: center; color: var(--nu-green); }
+        .mo-opt:hover { background: var(--nu-green-light); }
+        .mo-opt[aria-pressed="true"] { background: var(--nu-green-light); color: var(--nu-green); }
+        .mo-opt[aria-pressed="true"]::after { content: '\2713'; margin-left: auto; font-weight: 800; }
     </style>
     @stack('styles')
 </head>
@@ -187,12 +233,67 @@
     <!-- Footer -->
     @include('components.footer')
 
+    <!-- Pengaturan animasi -->
+    <div class="mo-wrap" id="mo-wrap">
+        <div class="mo-panel" id="mo-panel" role="group" aria-label="Pengaturan animasi">
+            <h5>Animasi</h5>
+            <button type="button" class="mo-opt" data-mode="simple" aria-pressed="false"><i class="fas fa-wand-magic-sparkles"></i><span>Sederhana<small>Fade ringan (bawaan)</small></span></button>
+            <button type="button" class="mo-opt" data-mode="full" aria-pressed="false"><i class="fas fa-film"></i><span>Penuh<small>Efek sinematik, lebih berat</small></span></button>
+            <button type="button" class="mo-opt" data-mode="off" aria-pressed="false"><i class="fas fa-ban"></i><span>Matikan<small>Tanpa animasi, paling ringan</small></span></button>
+        </div>
+        <button type="button" class="mo-fab" id="mo-fab" aria-label="Pengaturan animasi" aria-expanded="false"><i class="fas fa-wand-magic-sparkles"></i></button>
+    </div>
+
     <!-- AOS Init -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-        if (window.AOS) {
-            AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 60 });
+        var NU_MOTION = document.documentElement.getAttribute('data-motion');
+        if (window.AOS && NU_MOTION !== 'off') {
+            AOS.init(NU_MOTION === 'full'
+                ? { duration: 800, easing: 'ease-out-cubic', once: true, offset: 60 }
+                : { duration: 450, easing: 'ease-out', once: true, offset: 30 });
         }
+
+        // Mode sederhana: fade-in ringan untuk elemen yang tadinya di-scrub oleh efek film
+        function nuSimpleFade() {
+            if (document.documentElement.getAttribute('data-motion') !== 'simple' || !('IntersectionObserver' in window)) return;
+            var io = new IntersectionObserver(function (es) {
+                es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('mo-show'); io.unobserve(e.target); } });
+            }, { rootMargin: '0px 0px -8% 0px' });
+            document.querySelectorAll('[data-scrub], [data-clip]').forEach(function (el) {
+                if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('mo-hide'); io.observe(el); }
+            });
+        }
+        nuSimpleFade();
+
+        // Tombol pengaturan animasi
+        (function () {
+            var fab = document.getElementById('mo-fab'), panel = document.getElementById('mo-panel'), wrap = document.getElementById('mo-wrap');
+            var opts = panel.querySelectorAll('.mo-opt');
+            function mark() {
+                var cur = document.documentElement.getAttribute('data-motion');
+                opts.forEach(function (o) { o.setAttribute('aria-pressed', o.dataset.mode === cur ? 'true' : 'false'); });
+            }
+            mark();
+            fab.addEventListener('click', function () {
+                var open = panel.classList.toggle('open');
+                fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            document.addEventListener('click', function (e) {
+                if (!wrap.contains(e.target)) { panel.classList.remove('open'); fab.setAttribute('aria-expanded', 'false'); }
+            });
+            opts.forEach(function (o) {
+                o.addEventListener('click', function () {
+                    var old = document.documentElement.getAttribute('data-motion'), mode = o.dataset.mode;
+                    if (mode === old) { panel.classList.remove('open'); return; }
+                    try { localStorage.setItem('nu-motion', mode); } catch (e) {}
+                    document.documentElement.setAttribute('data-motion', mode);
+                    if (old === 'full' || mode === 'full') { location.reload(); return; }
+                    mark(); panel.classList.remove('open'); fab.setAttribute('aria-expanded', 'false');
+                    if (mode === 'simple') nuSimpleFade();
+                });
+            });
+        })();
 
         // Auto-dismiss alerts
         setTimeout(() => {

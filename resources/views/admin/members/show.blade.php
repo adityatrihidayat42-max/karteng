@@ -29,7 +29,7 @@
                 <h2 class="text-2xl font-black text-gray-900">{{ $member->nama_lengkap }}</h2>
                 <div class="font-mono text-xs font-bold text-emerald-700">NIS: {{ $member->nis ?? 'Belum terbit' }}</div>
                 <div class="text-xs text-gray-500">
-                    {{ $member->banom ? $member->banom->nama : 'Pengurus Ranting NU' }} &bull; Jabatan: {{ $member->jabatan ?? '-' }}
+                    {{ $member->banom ? $member->banom->nama : 'Pengurus Ranting NU Karangtengah' }} &bull; Jabatan: {{ $member->jabatan ?? '-' }}
                 </div>
                 <div class="pt-2">
                     <span class="px-2.5 py-1 rounded-full text-xs font-bold {{ $member->status === 'aktif' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800' }}">

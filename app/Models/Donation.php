@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Donation extends Model
 {
@@ -12,6 +13,7 @@ class Donation extends Model
 
     protected $fillable = [
         'transaction_code',
+        'public_token',
         'donor_name',
         'phone',
         'email',
@@ -32,6 +34,16 @@ class Donation extends Model
         'transfer_date' => 'date',
         'confirmed_at' => 'datetime',
     ];
+
+    protected static function booted(): void
+    {
+        // Setiap donasi baru otomatis mendapat token acak untuk alamat publiknya
+        static::creating(function (Donation $donation) {
+            if (empty($donation->public_token)) {
+                $donation->public_token = Str::random(40);
+            }
+        });
+    }
 
     // Relationships
     public function confirmedBy()

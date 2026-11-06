@@ -73,7 +73,7 @@
                                     <img src="{{ $m->foto_url }}" alt="{{ $m->nama_lengkap }}" class="w-10 h-10 rounded-full object-cover border border-gray-200">
                                     <div>
                                         <div class="font-bold text-gray-900 text-sm leading-tight">{{ $m->nama_lengkap }}</div>
-                                        <div class="text-[11px] text-gray-400">{{ $m->desa_kelurahan ?? 'Ranting' }}</div>
+                                        <div class="text-[11px] text-gray-400">{{ $m->desa_kelurahan ?? 'Ranting Karangtengah' }}</div>
                                     </div>
                                 </div>
                             </td>

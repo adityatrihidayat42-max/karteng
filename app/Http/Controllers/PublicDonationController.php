@@ -45,21 +45,23 @@ class PublicDonationController extends Controller
 
         $donation = Donation::create($validated);
 
-        return redirect()->route('donasi.show', $donation->transaction_code)
+        return redirect()->route('donasi.show', $donation->public_token)
             ->with('success', 'Pengajuan donasi berhasil dibuat. Silakan lakukan pembayaran dan unggah bukti transfer.');
     }
 
-    public function show($transaction_code)
+    public function show(Donation $donation)
     {
-        $donation = Donation::where('transaction_code', $transaction_code)->firstOrFail();
         $profile = OrganizationProfile::first() ?? OrganizationProfile::getInstance();
 
         return view('public.donasi.show', compact('donation', 'profile'));
     }
 
-    public function uploadProof(Request $request, $transaction_code)
+    public function uploadProof(Request $request, Donation $donation)
     {
-        $donation = Donation::where('transaction_code', $transaction_code)->firstOrFail();
+        // Bukti hanya boleh diunggah/diganti selama donasi belum diproses pengurus
+        if ($donation->status !== 'pending') {
+            return back()->with('error', 'Donasi ini sudah diproses pengurus, bukti transfer tidak dapat diubah.');
+        }
 
         $request->validate([
             'proof_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:3072',

@@ -153,9 +153,9 @@
                 <td style="padding-left: 6pt;">
                     <div class="member-name">{{ $member->nama_lengkap }}</div>
                     <div class="member-info">
-                        Banom: <span class="member-banom">{{ $member->banom ? $member->banom->nama : 'Pengurus Ranting' }}</span><br>
+                        Banom: <span class="member-banom">{{ $member->banom ? $member->banom->nama : 'Pengurus Ranting Karangtengah' }}</span><br>
                         Amanah: <strong>{{ $member->jabatan ?? 'Anggota' }}</strong><br>
-                        Wilayah: {{ $member->desa_kelurahan ?? 'Ranting' }}, {{ $member->kecamatan ?? '' }}<br>
+                        Wilayah: {{ $member->desa_kelurahan ?? 'Ranting Karangtengah' }}, {{ $member->kecamatan ?? '' }}<br>
                         Masa Khidmah: 2024 - 2029
                     </div>
                 </td>

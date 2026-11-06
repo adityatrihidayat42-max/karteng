@@ -27,7 +27,7 @@
     <div class="container">
         <div class="header">
             <div class="logo">NU</div>
-            <h1 style="margin: 0; font-size: 24px;">{{ $profile->nama_organisasi ?? 'NU Ranting' }}</h1>
+            <h1 style="margin: 0; font-size: 24px;">{{ $profile->nama_organisasi ?? 'NU Ranting Karangtengah' }}</h1>
             <p style="margin: 10px 0 0; opacity: 0.9;">{{ $profile->tagline ?? 'Menegakkan Ajaran Islam Ahlussunnah Wal Jamaah' }}</p>
         </div>
 
@@ -38,7 +38,7 @@
 
             <p>Yth. <strong>{{ $donation->donor_name }}</strong>,</p>
 
-            <p>Terima kasih atas kebaikan hati Anda berdonasi melalui <strong>{{ $profile->nama_organisasi ?? 'NU Ranting' }}</strong>. Kami dengan senang hati menginformasikan bahwa donasi Anda telah <strong style="color: #027f52;">dikonfirmasi dan diterima</strong>.</p>
+            <p>Terima kasih atas kebaikan hati Anda berdonasi melalui <strong>{{ $profile->nama_organisasi ?? 'NU Ranting Karangtengah' }}</strong>. Kami dengan senang hati menginformasikan bahwa donasi Anda telah <strong style="color: #027f52;">dikonfirmasi dan diterima</strong>.</p>
 
             <div class="transaction-box">
                 <div class="transaction-code">{{ $donation->transaction_code }}</div>
@@ -81,7 +81,7 @@
             </ul>
 
             <p style="text-align: center;">
-                <a href="{{ route('donasi.show', $donation->transaction_code) }}" class="btn">Lihat Detail Donasi</a>
+                <a href="{{ route('donasi.show', $donation->public_token) }}" class="btn">Lihat Detail Donasi</a>
             </p>
 
             <hr style="margin: 30px 0; border-color: #e9ecef;">
@@ -95,12 +95,12 @@
 
             <p>Wassalamu'alaikum Warahmatullahi Wabarakatuh,</p>
 
-            <p><strong>Pengurus {{ $profile->nama_organisasi ?? 'NU Ranting' }}</strong></p>
+            <p><strong>Pengurus {{ $profile->nama_organisasi ?? 'NU Ranting Karangtengah' }}</strong></p>
         </div>
 
         <div class="footer">
-            <p>{{ $profile->nama_organisasi ?? 'NU Ranting' }}<br>
-            {{ $profile->alamat_lengkap ?? 'Alamat Ranting' }}<br>
+            <p>{{ $profile->nama_organisasi ?? 'NU Ranting Karangtengah' }}<br>
+            {{ $profile->alamat_lengkap ?? 'Alamat Ranting Karangtengah' }}<br>
             Telp: {{ $profile->telepon ?? '-' }} | Email: {{ $profile->email ?? '-' }}<br>
             Website: {{ $profile->website ?? url('/') }}</p>
 

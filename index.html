@@ -1,0 +1,114 @@
+   
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toggle Animasi Website</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f3f4f6;
+color: #1f2937;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+margin: 0;
+}
+​.container {
+background: #ffffff;
+padding: 2rem;
+border-radius: 8px;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+text-align: center;
+max-width: 400px;
+}
+​/* Tombol Toggle */
+.btn-toggle {
+background-color: #3b82f6;
+color: white;
+border: none;
+padding: 10px 20px;
+font-size: 1rem;
+border-radius: 6px;
+cursor: pointer;
+margin-top: 1rem;
+transition: background-color 0.3s ease;
+}
+​.btn-toggle:hover {
+background-color: #2563eb;
+}
+​/* Elemen Contoh Animasi */
+.animated-box {
+width: 80px;
+height: 80px;
+background-color: #10b981;
+margin: 20px auto;
+border-radius: 8px;
+animation: bounce 2s infinite ease-in-out;
+}
+​@keyframes bounce {
+0%, 100% {
+transform: translateY(0);
+}
+50% {
+transform: translateY(-20px);
+}
+}
+​/* ----------------------------------------------------
+CSS UNTUK MEMATIKAN ANIMASI
+---------------------------------------------------- */
+body.no-animations *,
+body.no-animations *::before,
+body.no-animations *::after {
+animation: none !important;
+transition: none !important;
+}
+</style>
+</head>
+<body>
+​<div class="container">
+<h2>Preferensi Animasi</h2>
+<p>Secara <em>default</em> animasi aktif. Klik tombol di bawah untuk mematikan/menyalakan animasi.</p>
+​<div class="animated-box"></div>
+​<button id="animationToggleBtn" class="btn-toggle">
+<span id="animStatusText">Matikan Animasi</span>
+</button>
+</div>
+​<script>
+document.addEventListener("DOMContentLoaded", function () {
+const toggleBtn = document.getElementById("animationToggleBtn");
+const statusText = document.getElementById("animStatusText");
+const body = document.body;
+​// Cek status dari localStorage
+// Jika belum ada (pertama kali masuk), default: "true" (aktif)
+let animationsEnabled = localStorage.getItem("animationsEnabled");
+​if (animationsEnabled === null) {
+animationsEnabled = "true";
+localStorage.setItem("animationsEnabled", "true");
+}
+​// Fungsi untuk memperbarui tampilan UI dan state animasi
+function updateAnimationState(isEnabled) {
+if (isEnabled === "true") {
+body.classList.remove("no-animations");
+statusText.textContent = "Matikan Animasi";
+} else {
+body.classList.add("no-animations");
+statusText.textContent = "Nyalakan Animasi";
+}
+}
+​// Jalankan saat halaman dimuat
+updateAnimationState(animationsEnabled);
+​// Event listener saat tombol diklik
+toggleBtn.addEventListener("click", function () {
+let currentState = localStorage.getItem("animationsEnabled");
+let newState = currentState === "true" ? "false" : "true";
+​localStorage.setItem("animationsEnabled", newState);
+updateAnimationState(newState);
+});
+});
+</script>
+</body>
+</html>

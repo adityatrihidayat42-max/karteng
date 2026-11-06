@@ -104,9 +104,11 @@
                     ['icon' => 'fa-images', 'label' => 'Galeri', 'route' => 'admin.galleries.index'],
                     ['icon' => 'fa-hand-holding-heart', 'label' => 'Donasi/Infaq', 'route' => 'admin.donations.index'],
                     ['icon' => 'fa-id-card', 'label' => 'Cetak KTA', 'route' => 'admin.kta.index'],
-                    ['icon' => 'fa-building', 'label' => 'Profil Organisasi', 'route' => 'admin.organization.edit'],
-                    ['icon' => 'fa-user-shield', 'label' => 'User/Pengurus', 'route' => 'admin.users.index'],
+                    ['icon' => 'fa-building', 'label' => 'Profil Organisasi', 'route' => 'admin.organization.edit', 'adminOnly' => true],
+                    ['icon' => 'fa-user-shield', 'label' => 'User/Pengurus', 'route' => 'admin.users.index', 'adminOnly' => true],
                 ];
+                $isAdminRole = auth()->user()->hasRole('admin');
+                $navItems = array_filter($navItems, fn ($item) => empty($item['adminOnly']) || $isAdminRole);
             @endphp
 
             @foreach($navItems as $item)

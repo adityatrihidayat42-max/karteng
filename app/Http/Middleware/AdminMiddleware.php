@@ -21,7 +21,7 @@ class AdminMiddleware
         /** @var \App\Models\User $user */ // Tambahkan baris ini
         $user = Auth::user();
         
-        if (!$user->hasAnyRole(['admin', 'pengurus']) && $user->email !== 'admin@nu.or.id') {
+        if (!$user->hasAnyRole(['admin', 'pengurus'])) {
             abort(403, 'Anda tidak memiliki hak akses ke halaman administrator.');
         }
 

@@ -80,7 +80,7 @@ return [
 Setup `.env`:
 ```env
 BACKUP_PASSWORD=your-strong-password
-BACKUP_NOTIFICATION_EMAIL=admin@nugumelar.or.id
+BACKUP_NOTIFICATION_EMAIL=admin@nukarangtengah.or.id
 ```
 
 Schedule di `app/Console/Kernel.php`:
@@ -99,8 +99,8 @@ Buat script `backup-db.sh`:
 # Backup SQLite Database
 
 DATE=$(date +%Y%m%d_%H%M%S)
-BACKUP_DIR="/var/www/html/gumelarn/storage/backups"
-DB_PATH="/var/www/html/gumelarn/database/database.sqlite"
+BACKUP_DIR="/var/www/html/karteng/storage/backups"
+DB_PATH="/var/www/html/karteng/database/database.sqlite"
 BACKUP_FILE="${BACKUP_DIR}/database_${DATE}.sqlite.gz"
 
 # Buat direktori backup
@@ -123,7 +123,7 @@ chmod +x backup-db.sh
 
 Cron:
 ```bash
-0 1 * * * /var/www/html/gumelarn/backup-db.sh
+0 1 * * * /var/www/html/karteng/backup-db.sh
 ```
 
 ## Opsi 3: Laravel S3 Backup (Cloud Storage)

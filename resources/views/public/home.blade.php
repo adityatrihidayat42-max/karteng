@@ -216,15 +216,32 @@
         .intro > * { animation: none; opacity: 1; transform: none; }
         html { scroll-behavior: auto; }
     }
+
+    /* ---------- Perbaikan tampilan HP ---------- */
+    @media (max-width: 640px) {
+        .scene { padding: 20px 16px 48px; }
+        .hero-inner { width: 100%; }
+        .hero-badge { max-width: 100%; padding: 7px 14px; border-radius: 16px; font-size: 9px; letter-spacing: .06em; line-height: 1.45; text-align: center; }
+        .hero-title { font-size: clamp(28px, 9.4vw, 40px); line-height: 1.1; overflow-wrap: break-word; max-width: 100%; }
+        .hero-quote { font-size: 14.5px; line-height: 1.45; }
+        .hero-desc { font-size: 13px; line-height: 1.65; }
+        .hero-cta { flex-direction: column; width: 100%; max-width: 300px; gap: 10px; }
+        .hero-cta .nu-btn { width: 100%; justify-content: center; padding: 12px 18px; }
+        .f-orn svg { width: 170px; }
+        .sec-head { flex-wrap: wrap; }
+        .sec-title { font-size: 21px; }
+        .cta { padding: 64px 18px; }
+        .a-item:hover, .vm-card:hover, .b-card:hover, .p-card:hover { transform: none; }
+    }
 </style>
 @endpush
 
 @section('content')
 @php
     $logo = data_get($profile, 'logo');
-    $orgName = data_get($profile, 'nama_organisasi') ?: 'NU Ranting';
+    $orgName = data_get($profile, 'nama_organisasi') ?: 'NU Ranting Karangtengah';
     $tagline = data_get($profile, 'tagline') ?: 'Menegakkan Ajaran Islam Ahlussunnah Wal Jamaah';
-    $heroDesc = 'Selamat datang di website resmi Pengurus Ranting Nahdlatul Ulama. Mari bersama-sama menjaga nilai-nilai Islam yang damai, toleran dan penuh keberkahan.';
+    $heroDesc = 'Selamat datang di website resmi Pengurus Ranting Nahdlatul Ulama Karangtengah. Mari bersama-sama menjaga nilai-nilai Islam yang damai, toleran dan penuh keberkahan.';
     $galleryItems = collect($galleries ?? [])->take(5);
 @endphp
 
@@ -322,7 +339,7 @@
     <div class="wrap about-grid">
         <div>
             <p class="lead" data-scrub>
-                {{ \Illuminate\Support\Str::limit(data_get($profile, 'tentang') ?: 'Pengurus Ranting Nahdlatul Ulama adalah struktur organisasi NU di tingkat desa/kelurahan yang bersentuhan langsung dengan denyut nadi jamaah nahdliyin. Kami berkhidmat untuk mewujudkan kemaslahatan umat dalam bingkai Islam rahmatan lil alamin.', 320) }}
+                {{ \Illuminate\Support\Str::limit(data_get($profile, 'tentang') ?: 'Pengurus Ranting Nahdlatul Ulama Karangtengah adalah struktur organisasi NU di tingkat desa/kelurahan yang bersentuhan langsung dengan denyut nadi jamaah nahdliyin. Kami berkhidmat untuk mewujudkan kemaslahatan umat dalam bingkai Islam rahmatan lil alamin.', 320) }}
             </p>
             <div class="vm-grid">
                 <div class="vm-card" data-scrub data-delay="60">
@@ -347,11 +364,11 @@
                     </div>
                     <div>
                         <strong>{{ $orgName }}</strong>
-                        <span>{{ data_get($profile, 'wilayah') ?: 'Ranting NU' }}</span>
+                        <span>{{ data_get($profile, 'wilayah') ?: 'Ranting NU Karangtengah' }}</span>
                     </div>
                 </div>
                 <ul class="cc-list">
-                    <li><i class="fas fa-location-dot"></i><span>{{ data_get($profile, 'alamat_lengkap') ?: 'Sekretariat Ranting Nahdlatul Ulama' }}</span></li>
+                    <li><i class="fas fa-location-dot"></i><span>{{ data_get($profile, 'alamat_lengkap') ?: 'Sekretariat Ranting Nahdlatul Ulama Karangtengah' }}</span></li>
                     <li><i class="fas fa-phone"></i><span>{{ data_get($profile, 'telepon') ?: '+62 812-3456-7890' }}</span></li>
                     <li><i class="fas fa-envelope"></i><span>{{ data_get($profile, 'email') ?: 'ranting@nu.or.id' }}</span></li>
                 </ul>
@@ -493,7 +510,8 @@
      maju & mundur mengikuti arah scroll (reversibel seperti video)
    ===================================================================== */
 (function () {
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* Efek film hanya jalan di mode animasi "Penuh" (lihat tombol pengaturan animasi) */
+    var reduce = document.documentElement.getAttribute('data-motion') !== 'full';
     var film = document.getElementById('film');
     if (reduce || !film) return;
     document.documentElement.classList.add('film-on');

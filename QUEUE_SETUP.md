@@ -25,7 +25,7 @@ User=www-data
 Group=www-data
 Restart=always
 RestartSec=3
-WorkingDirectory=/var/www/html/gumelarn
+WorkingDirectory=/var/www/html/karteng
 ExecStart=/usr/bin/php artisan queue:work --sleep=3 --tries=3 --timeout=90 --max-jobs=1000 --max-time=3600
 
 [Install]
@@ -51,7 +51,7 @@ Buat `/etc/supervisor/conf.d/laravel-worker.conf`:
 ```ini
 [program:laravel-worker]
 process_name=%(program_name)s_%(process_num)02d
-command=php /var/www/html/gumelarn/artisan queue:work --sleep=3 --tries=3 --timeout=90 --max-jobs=1000
+command=php /var/www/html/karteng/artisan queue:work --sleep=3 --tries=3 --timeout=90 --max-jobs=1000
 autostart=true
 autorestart=true
 stopasgroup=true
@@ -59,7 +59,7 @@ killasgroup=true
 user=www-data
 numprocs=2
 redirect_stderr=true
-stdout_logfile=/var/www/html/gumelarn/storage/logs/worker.log
+stdout_logfile=/var/www/html/karteng/storage/logs/worker.log
 stdout_logfile_maxbytes=10MB
 ```
 

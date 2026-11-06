@@ -22,13 +22,13 @@ sudo crontab -u www-data -e
 Tambahkan baris ini:
 
 ```bash
-* * * * * cd /var/www/html/gumelarn && php artisan schedule:run >> /dev/null 2>&1
+* * * * * cd /var/www/html/karteng && php artisan schedule:run >> /dev/null 2>&1
 ```
 
 Atau dengan logging:
 
 ```bash
-* * * * * cd /var/www/html/gumelarn && php artisan schedule:run >> /var/www/html/gumelarn/storage/logs/scheduler.log 2>&1
+* * * * * cd /var/www/html/karteng && php artisan schedule:run >> /var/www/html/karteng/storage/logs/scheduler.log 2>&1
 ```
 
 ## Verifikasi Cron
@@ -38,7 +38,7 @@ Atau dengan logging:
 sudo tail -f /var/log/syslog | grep CRON
 
 # Atau cek log scheduler
-tail -f /var/www/html/gumelarn/storage/logs/scheduler.log
+tail -f /var/www/html/karteng/storage/logs/scheduler.log
 ```
 
 ## Scheduled Commands yang Direkomendasikan
