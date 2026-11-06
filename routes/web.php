@@ -59,9 +59,15 @@ Route::get('/galeri/{gallery:slug}', [PublicGalleryController::class, 'show'])->
 
 // Donasi / Infaq
 Route::get('/donasi', [PublicDonationController::class, 'index'])->name('donasi.index');
+<<<<<<< HEAD
 Route::post('/donasi', [PublicDonationController::class, 'store'])->name('donasi.store')->middleware('throttle:10,10');
 Route::get('/donasi/{donation:public_token}', [PublicDonationController::class, 'show'])->name('donasi.show');
 Route::post('/donasi/{donation:public_token}/upload-bukti', [PublicDonationController::class, 'uploadProof'])->name('donasi.upload-bukti')->middleware('throttle:10,10');
+=======
+Route::post('/donasi', [PublicDonationController::class, 'store'])->name('donasi.store')->middleware('throttle:5,10');
+Route::get('/donasi/{transaction_code}', [PublicDonationController::class, 'show'])->name('donasi.show');
+Route::post('/donasi/{transaction_code}/upload-bukti', [PublicDonationController::class, 'uploadProof'])->name('donasi.upload-bukti')->middleware('throttle:10,10');
+>>>>>>> c62801866525755a687e5889f7ab1e1b07a93a37
 
 // =========================================================================
 // ADMIN ROUTES (Protected by auth + admin role)
@@ -104,6 +110,7 @@ Route::resource('banoms', Admin\BanomController::class)
     Route::post('donations/{donation}/confirm', [Admin\DonationController::class, 'confirm'])->name('donations.confirm');
     Route::post('donations/{donation}/reject', [Admin\DonationController::class, 'reject'])->name('donations.reject');
 
+<<<<<<< HEAD
     // User/Pengurus dan Profil Organisasi: KHUSUS peran admin (pengurus tidak boleh)
     Route::middleware('role:admin')->group(function () {
         // User / Pengurus CRUD
@@ -113,4 +120,12 @@ Route::resource('banoms', Admin\BanomController::class)
         Route::get('organization', [Admin\OrganizationController::class, 'edit'])->name('organization.edit');
         Route::put('organization', [Admin\OrganizationController::class, 'update'])->name('organization.update');
     });
+=======
+    // User / Pengurus CRUD
+    Route::resource('users', Admin\UserController::class)->middleware('admin:admin');
+
+    // Profil Organisasi
+    Route::get('organization', [Admin\OrganizationController::class, 'edit'])->name('organization.edit')->middleware('admin:admin');
+    Route::put('organization', [Admin\OrganizationController::class, 'update'])->name('organization.update')->middleware('admin:admin');
+>>>>>>> c62801866525755a687e5889f7ab1e1b07a93a37
 });

@@ -104,14 +104,20 @@
                     ['icon' => 'fa-images', 'label' => 'Galeri', 'route' => 'admin.galleries.index'],
                     ['icon' => 'fa-hand-holding-heart', 'label' => 'Donasi/Infaq', 'route' => 'admin.donations.index'],
                     ['icon' => 'fa-id-card', 'label' => 'Cetak KTA', 'route' => 'admin.kta.index'],
+<<<<<<< HEAD
                     ['icon' => 'fa-building', 'label' => 'Profil Organisasi', 'route' => 'admin.organization.edit', 'adminOnly' => true],
                     ['icon' => 'fa-user-shield', 'label' => 'User/Pengurus', 'route' => 'admin.users.index', 'adminOnly' => true],
+=======
+                    ['icon' => 'fa-building', 'label' => 'Profil Organisasi', 'route' => 'admin.organization.edit', 'admin_only' => true],
+                    ['icon' => 'fa-user-shield', 'label' => 'User/Pengurus', 'route' => 'admin.users.index', 'admin_only' => true],
+>>>>>>> c62801866525755a687e5889f7ab1e1b07a93a37
                 ];
                 $isAdminRole = auth()->user()->hasRole('admin');
                 $navItems = array_filter($navItems, fn ($item) => empty($item['adminOnly']) || $isAdminRole);
             @endphp
 
             @foreach($navItems as $item)
+                @continue(!empty($item['admin_only']) && !auth()->user()->hasRole('admin'))
                 <a href="{{ route($item['route']) }}"
                    class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-green-100 text-sm {{ request()->routeIs($item['route']) || request()->routeIs(str_replace('.index','.*',$item['route'])) ? 'active' : '' }}">
                     <i class="fas {{ $item['icon'] }} w-4 text-center opacity-80"></i>

@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- AOS (dipakai halaman lain) -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="{{ asset('vendor/aos/aos.css') }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -245,7 +245,7 @@
     </div>
 
     <!-- AOS Init -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="{{ asset('vendor/aos/aos.js') }}"></script>
     <script>
         var NU_MOTION = document.documentElement.getAttribute('data-motion');
         if (window.AOS && NU_MOTION !== 'off') {
