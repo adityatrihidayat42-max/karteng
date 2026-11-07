@@ -104,13 +104,8 @@
                     ['icon' => 'fa-images', 'label' => 'Galeri', 'route' => 'admin.galleries.index'],
                     ['icon' => 'fa-hand-holding-heart', 'label' => 'Donasi/Infaq', 'route' => 'admin.donations.index'],
                     ['icon' => 'fa-id-card', 'label' => 'Cetak KTA', 'route' => 'admin.kta.index'],
-<<<<<<< HEAD
                     ['icon' => 'fa-building', 'label' => 'Profil Organisasi', 'route' => 'admin.organization.edit', 'adminOnly' => true],
                     ['icon' => 'fa-user-shield', 'label' => 'User/Pengurus', 'route' => 'admin.users.index', 'adminOnly' => true],
-=======
-                    ['icon' => 'fa-building', 'label' => 'Profil Organisasi', 'route' => 'admin.organization.edit', 'admin_only' => true],
-                    ['icon' => 'fa-user-shield', 'label' => 'User/Pengurus', 'route' => 'admin.users.index', 'admin_only' => true],
->>>>>>> c62801866525755a687e5889f7ab1e1b07a93a37
                 ];
                 $isAdminRole = auth()->user()->hasRole('admin');
                 $navItems = array_filter($navItems, fn ($item) => empty($item['adminOnly']) || $isAdminRole);
